@@ -8,6 +8,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shrammitra.com"),
   title: "Shram Mitra - Rozgaar aur reliable workforce dhundhna hua ab Aasaan",
   description: "Shram Mitra — Bharat ka trusted digital platform jo company, contractor aur shramik ko jodta hai bina kisi pareshani ke.",
   keywords: ["Shram Mitra", "employment", "contractor", "worker", "workforce platform India", "shramik", "jobs"],

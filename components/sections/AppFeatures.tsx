@@ -207,7 +207,7 @@ export function AppFeatures() {
                       <img
                         src={feature.image}
                         alt={feature.title}
-                        className="relative z-20 h-auto max-h-[500px] w-[95%] object-contain md:max-h-[450px]"
+                        className="relative  z-20 h-auto max-h-[600px] w-[120%] object-contain md:max-h-[550px]"
                       />
                     </div>
 

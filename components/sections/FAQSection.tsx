@@ -4,9 +4,24 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import Container from "@/components/ui/Container"
 import { ChevronDown } from "lucide-react"
-import { AnimatedButton } from "@/components/ui/AnimatedButton"
 
-const ITEMS = [
+export interface FAQItem {
+  title: string
+  content: string
+}
+
+export interface FAQSectionProps {
+  id?: string
+  items?: FAQItem[]
+  title?: React.ReactNode
+  description?: React.ReactNode
+  secondaryText?: React.ReactNode
+  cta?: React.ReactNode
+  defaultActiveIndex?: number | null
+  className?: string
+}
+
+const DEFAULT_ITEMS: FAQItem[] = [
   {
     title: "How does Shram Mitra help my business?",
     content:
@@ -25,22 +40,54 @@ const ITEMS = [
   },
 ]
 
-export function FAQSection() {
-  const [active, setActive] = useState(2)
+export function FAQSection({
+  id = "about",
+  items = DEFAULT_ITEMS,
+  title,
+  description,
+  secondaryText,
+  cta,
+  defaultActiveIndex = 2,
+  className = "",
+}: FAQSectionProps) {
+  const [active, setActive] = useState<number | null>(defaultActiveIndex)
+
+  const defaultTitle = (
+    <>
+      Suitable platform for
+      <br />
+      all workforce stakeholders
+    </>
+  )
+
+  const defaultDescription = (
+    <>
+      ShramMitra helps workers, contractors and companies collaborate
+      efficiently. From job discovery to compliance management,
+      everything is handled in one secure platform.
+    </>
+  )
+
+  const defaultSecondaryText = (
+    <>
+      Built specifically for the labor ecosystem, it simplifies
+      workforce coordination and ensures transparent project execution.
+    </>
+  )
 
   return (
-    <section id="about" className="py-14 md:py-28">
+    <section id={id} className={`py-14 md:py-28 ${className}`}>
       <Container>
         <div className="grid items-top gap-16 md:grid-cols-2">
           {/* Accordion */}
           <div className="space-y-4">
-            {ITEMS.map((item, i) => {
+            {items.map((item, i) => {
               const isActive = active === i
 
               return (
                 <div
-                  key={item.title}
-                  onClick={() => setActive(i)}
+                  key={item.title || i}
+                  onClick={() => setActive(isActive ? null : i)}
                   className={`cursor-pointer rounded-xl border p-6 transition ${
                     isActive
                       ? "bg-secondary text-secondary-foreground"
@@ -51,7 +98,9 @@ export function FAQSection() {
                     <h3 className="text-lg font-semibold">{item.title}</h3>
 
                     <ChevronDown
-                      className={`transition-transform duration-300 ${isActive ? "rotate-180" : ""}`}
+                      className={`transition-transform duration-300 ${
+                        isActive ? "rotate-180" : ""
+                      }`}
                     />
                   </div>
 
@@ -82,23 +131,24 @@ export function FAQSection() {
             viewport={{ once: true }}
           >
             <h2 className="mb-6 font-heading text-4xl font-bold md:text-5xl">
-              Suitable platform for
-              <br />
-              all workforce stakeholders
+              {title || defaultTitle}
             </h2>
 
             <p className="text-muted-foreground mb-6">
-              ShramMitra helps workers, contractors and companies collaborate
-              efficiently. From job discovery to compliance management,
-              everything is handled in one secure platform.
+              {description || defaultDescription}
             </p>
 
-            <p className="text-muted-foreground mb-8">
-              Built specifically for the labor ecosystem, it simplifies
-              workforce coordination and ensures transparent project execution.
-            </p>
+            {secondaryText !== undefined ? (
+              secondaryText && (
+                <p className="text-muted-foreground mb-8">{secondaryText}</p>
+              )
+            ) : (
+              <p className="text-muted-foreground mb-8">
+                {defaultSecondaryText}
+              </p>
+            )}
 
-            {/* <AnimatedButton>Explore Platform</AnimatedButton> */}
+            {cta}
           </motion.div>
         </div>
       </Container>

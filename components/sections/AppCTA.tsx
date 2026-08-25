@@ -36,7 +36,7 @@ export function AppCTA() {
 
             <div className="flex flex-wrap gap-4">
               <Link href={"https://play.google.com/store/apps/details?id=com.smitra"}>
-              <img src="assets/play-store.png" alt="Get it on Google Play" className="h-14 cursor-pointer transition-transform hover:scale-105" />
+              <img src="/assets/play-store.png" alt="Get it on Google Play" className="h-14 cursor-pointer transition-transform hover:scale-105" />
               </Link>
             </div>
           </motion.div>
@@ -49,7 +49,7 @@ export function AppCTA() {
             className="flex justify-center md:items-start md:justify-start"
           >
             <img
-              src="assets/app-landing.png"
+              src="/assets/app-landing.png"
               alt="Shram Mitra App"
               className="w-full max-w-md drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] object-contain"
             />

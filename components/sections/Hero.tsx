@@ -5,6 +5,7 @@ import Container from "@/components/ui/Container"
 import { AnimatedButton } from "@/components/ui/AnimatedButton"
 import { Search, Pencil } from "lucide-react"
 import { FloatingElements } from "../ui/FloatingElements"
+import CircularGallery from "@/components/CircularGallery"
 // import PixelBlast from "@/components/PixelBlast"
 
 /* -------------------------------- */
@@ -176,7 +177,13 @@ export function Hero() {
             })}
           </motion.div>
         </div>
+    </Container>
 
+        <div className="relative w-full max-w-360 mx-auto my-6 overflow-hidden">
+          <CircularGallery />
+        </div>
+        
+   <Container>
         {/* Phone Image */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
